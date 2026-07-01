@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TMT Manager - Accueil</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* Styles spécifiques à la page d'accueil */
+        :root {
+            --hero-bg: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+        }
+        
+        body.landing-page {
+            background-color: var(--background);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .landing-navbar {
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+
+        .landing-navbar .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+        .landing-navbar .logo span {
+            color: var(--primary);
+        }
+
+        .hero-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 5rem 5%;
+            background: linear-gradient(rgba(10, 25, 47, 0.7), rgba(10, 25, 47, 0.8)), url('images/landing_hero.png') center/cover no-repeat;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+            animation: pulse 15s infinite alternate;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.5; }
+            100% { transform: scale(1.2); opacity: 0.8; }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            letter-spacing: -1px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            margin-bottom: 2.5rem;
+            font-weight: 300;
+        }
+
+
+
+        .landing-footer {
+            background: var(--text-main);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: auto;
+        }
+    </style>
+</head>
+<body class="landing-page">
+
+    <nav class="landing-navbar" style="display: flex; align-items: center; gap: 1rem;">
+        <div style="display: flex; align-items: center; gap: 0.75rem;">
+            <img src="images/logo.jpeg" alt="TMT Logo" style="height: 30px; width: auto; border-radius: 50%; border: 2px solid var(--primary); background: white; padding: 1px;">
+            <div class="logo">TMT <span>Manager</span></div>
+        </div>
+    </nav>
+
+    <header class="hero-section">
+        <div class="hero-content">
+            <h1 class="hero-title" style="color: white;">Bienvenue sur TMT Manager</h1>
+            <div id="heroActions">
+                <a href="login.html" class="btn-primary" style="font-size: 1.1rem; padding: 1rem 2.5rem; border-radius: 50px; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
+                    Se connecter
+                </a>
+            </div>
+        </div>
+    </header>
+
+
+
+    <footer class="landing-footer">
+        <p>&copy; 2026 TMT Manager. Tous droits réservés. Système interne sécurisé.</p>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        // Vérifier l'état d'authentification
+        document.addEventListener('DOMContentLoaded', () => {
+            fetch('api/auth.php?action=check')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        
+                        // Définir un arrière-plan dynamique basé sur le rôle de l'utilisateur
+                        const heroSection = document.querySelector('.hero-section');
+                        if (heroSection && data.user && data.user.role) {
+                            heroSection.style.background = `linear-gradient(rgba(10, 25, 47, 0.7), rgba(10, 25, 47, 0.8)), url('images/${data.user.role}_hero.png') center/cover no-repeat`;
+                            heroSection.style.color = 'white';
+                        }
+                        
+                        document.getElementById('heroActions').innerHTML = `
+                            <a href="dashboard.html" class="btn-primary" style="background: var(--success); border-color: var(--success); font-size: 1.1rem; padding: 1rem 2.5rem; border-radius: 50px; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
+                                Aller au Tableau de Bord
+                            </a>
+                        `;
+                        
+                        // Réinitialiser les nouvelles icônes
+                        lucide.createIcons();
+                    }
+                })
+                .catch(() => { /* pas connecté, ignorer silencieusement */ });
+        });
+    </script>
+</body>
+</html>
