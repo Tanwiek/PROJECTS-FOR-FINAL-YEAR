@@ -1,0 +1,130 @@
+classDiagram
+    class Role {
+        +int id
+        +string nom
+    }
+
+    class Utilisateur {
+        +int id
+        +int role_id
+        +string nom_utilisateur
+        -string mot_de_passe
+        +string nom_complet
+        +string email
+        +timestamp cree_le
+    }
+
+    class AppelOffre {
+        +int id
+        +int cree_par
+        +string numero_reference
+        +string titre
+        +text description
+        +string nom_client
+        +enum statut
+        +string departement_assigne
+        +date date_limite
+        +timestamp cree_le
+    }
+
+    class Projet {
+        +int id
+        +int tender_id
+        +int archive_par
+        +string code_projet
+        +string titre
+        +enum statut
+        +boolean est_archive
+        +timestamp archive_le
+        +timestamp cree_le
+    }
+
+    class Document {
+        +int id
+        +int project_id
+        +int tender_id
+        +int televerse_par
+        +string nom_fichier
+        +string chemin_fichier
+        +enum type_fichier
+        +timestamp televerse_le
+    }
+
+    class Fournisseur {
+        +int id
+        +string nom
+        +string email
+        +string telephone
+        +text adresse
+        +timestamp cree_le
+    }
+
+    class BonCommande {
+        +int id
+        +int project_id
+        +int supplier_id
+        +string numero_commande
+        +date date_commande
+        +float montant_total
+        +enum statut
+    }
+
+    class Livraison {
+        +int id
+        +int order_id
+        +int project_id
+        +string numero_livraison
+        +date date_livraison
+        +enum statut
+    }
+
+    class Facture {
+        +int id
+        +int project_id
+        +string numero_facture
+        +date date_emission
+        +date date_echeance
+        +float montant
+        +enum statut
+        +timestamp cree_le
+    }
+
+    class Paiement {
+        +int id
+        +int invoice_id
+        +float montant
+        +date date_paiement
+        +enum methode_paiement
+        +string reference
+    }
+
+    class JournalActivite {
+        +int id
+        +int user_id
+        +string action
+        +text details
+        +timestamp cree_le
+    }
+
+    %% --- RELATIONS ---
+    
+    Role "1" <-- "0..*" Utilisateur : possède
+    
+    Utilisateur "1" <-- "0..*" AppelOffre : crée
+    Utilisateur "1" <-- "0..*" Document : téléverse
+    Utilisateur "1" <-- "0..*" Projet : archive
+    Utilisateur "1" <-- "0..*" JournalActivite : effectue
+    
+    AppelOffre "1" <-- "0..*" Projet : engendre
+    AppelOffre "1" <-- "0..*" Document : contient
+    
+    Projet "1" <-- "0..*" Document : contient
+    Projet "1" <-- "0..*" BonCommande : nécessite
+    Projet "1" <-- "0..*" Livraison : reçoit
+    Projet "1" <-- "0..*" Facture : génère
+    
+    Fournisseur "1" <-- "0..*" BonCommande : reçoit
+    
+    BonCommande "1" <-- "0..*" Livraison : fait l'objet de
+    
+    Facture "1" <-- "0..*" Paiement : est réglée par
