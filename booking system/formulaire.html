@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>formulaire de presentation</title>
+    <style>
+        body{
+            font-family:Arial, Helvetica, sans-serif;
+            background-color:#eef2f3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .contrainer{
+            background-color: #ff8d;
+            padding: 35px 45px;
+            box-shadow: 0 0 12px;
+            width: 400px;
+        }
+        h2{
+            text-align: center;
+            color: #333;
+            margin-bottom: 25px;
+        }
+        .input-group{
+            margin-bottom: 15px;
+        }
+        .label{
+            display: block;
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 5px;
+        }
+        input,select{
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc32c;
+            border-radius: 5px;
+            font-size: 14px;
+            outline: none;
+        }
+        .button{
+            background-color: rgb(81, 255, 0);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+        }
+        .message{
+            text-align: center;
+            color:green;
+            font-size: 13px;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-box">
+        <h2>PRENDRE UN RENDEZ-VOUS</h2>
+        <form action="#" method="post">
+            <div class="input-group">
+                <label for="nom">Nom :</label>
+                <input type="text" id="nom" name="nom"placeholder="entrez votre nom" required>
+            </div>
+            <div class="input-group">
+                <label for="prenom">Prenom :</label>
+                <input type="text" id="prenom" name="prenom"placeholder="entrez votre prenom" required>
+            </div>
+            <div class="input-group">
+                <label for="email">Email :</label>
+                <input type="email" id="email" name="email" required>
+            </div>    
+            <div class="input-group">
+                <label for="telephone">Telephone :</label>
+                <input type="tel" id="telephone" name="telephone" required>
+            </div>
+            <div class="input-group">
+                <label for="service">Service demandé</label>
+                <select id="service" name="service" required>
+                    <option value="">--selectionnez un service--</option>
+                    <option value="accueil">Accueil / information</option>
+                    <option value="demande_visa">demande de visa</option>
+                    <option value="assistance_voyage">assistance voyage</option>
+                    <option value="regroupement_familiale">regroupement familiale</option>
+                    <option value="vente_billet">vente de billets d'avion</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label for="date">Date du rendez-vous :</label>
+                <input type="date" id="date" name="date" required>
+                <label for="heure">Heure du rendez-vous :</label>
+                <input type="time" id="heure" name="heure" required>
+            </div>
+            <div class="input-group">
+                <label for="motif">Motif du rendez-vous :</label>
+                <textarea id="motif" name="motif" placeholder="décrivez brievement le motif..."required></textarea>
+            </div>
+            <button type="submit" class="button">valider le rendez-vous</button>
+        </from>   
+        <script>
+            const params = new URLSearlParams (window.location.search);
+            const service = params.get ("service");
+            if(service){
+                document.getElementById("service").value = service;
+            }
+        </script>
+</body>
+</html>

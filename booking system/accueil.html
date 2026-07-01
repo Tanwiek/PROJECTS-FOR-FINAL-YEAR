@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>acueil-TMt SaRl</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: poppins,sans-serif;
+        }
+        body{
+            background-color:white
+            color:#333;
+        }
+        header{
+            background: linear-gradient(#0ca3da6b);
+            color: rgb(17, 23, 5);
+            text-align: center;
+            padding: 60px;
+        }
+        header h1{
+            font-size: 42px;
+            font-weight: 700px;
+            letter-spacing: 1px;
+        }
+        header p{
+            font-size: 18px;
+            margin-top: 10px;
+            font-weight: 300;
+        }
+        .services{
+            padding: 60px;
+            max-width: 1100px;
+            margin: auto;
+            text-align: center;
+        }
+        .services h2{
+            color: #500c18;
+            font-size: 28px;
+            margin-bottom: 40px;
+        }.service-container{
+            display: grid;
+            grid-template-columns: repeat(auto-fit,minmax);
+            gap: 25px;
+        }
+        .service{
+            background-color:#131614
+            padding: 25px;
+            border-radius: 10PX;
+            box-shadow: 0 3px 8px;
+            transition: transform 0.3s ease;
+        }
+        .service:hover {
+            transform: translateY(-5px);
+        }
+        .service h3 {
+            color: rgb(143, 10, 10);
+            margin-bottom: 10px;
+        }
+        .service p {
+            font-size: 15px;
+            color: #131614;
+            line-height: 1.5;
+        }
+        .slogan {
+            background: #60221d;
+            color: rgb(36, 195, 195);
+            padding: 30px;
+            text-align: center;
+            font-size: 10px;
+            font-style: italic;
+        }
+        footer{
+            background: #333;
+            color: #1572dd;
+            text-align: center;
+            padding: 15px;
+            font-size: 14px;
+        }
+        @media(max-width:600px) {
+            header h1 {
+                font-size: 32px;
+            }
+            .service p {
+                font-size: 14px;
+            }}
+    </style>
+</head>
+<body>
+    <header>
+        <h1>BIENVENUE CHEZ TMT SARL </h1>
+        <P>votre partenaire de confiance pour vos voyages et démarches administratives</P>
+        </header>
+        <section class="services">
+            <h2>Nos services</h2>
+            <div class="services-container">
+                <div class="services">
+                    <a href="formulaire.html?service=assistance_voyage" class="service">
+                    <h3>assistance voyage</h3>
+                    <p>Nous vous accompagnons dans la planification de vos voyages,de la reservation à votre arrivée.</p>
+                    </a>
+                    </div>
+                    <div class="service">
+                        <a href="formulaire.html?servive=demande_visa" class="service">
+                     <h3>demande de visa </h3>   
+                     <p>Profitez de notre expertise pour la constitution et le suivi de vos dossiers de visa.</p>
+                        </a>
+                        </div>
+                        <div class="service">
+                            <a href="formulaire.html? servvice=regroupement_familiale" class="service">
+                            <h3>Regroupement familial</h3>
+                            <p>Nous vous aidons dans toutes les demarches administratives pour reunir vos proches à l'etranger</p>
+                            </a>
+                         </div>
+            <div class="service">
+                <a href="formulaire.html? service=prestataires_services" class="service">
+                <h3>Prestataires de services </h3>
+                <p>Nous vous proposons divers services administratifs pour simplifier vos projets de voyages</p>
+                </a>
+            </div>
+            <div class="service">
+                <a href="formulaire.html? service=vente_billet" class="service">
+                <h3>Vente de billets d'avion</h3>
+                <p>Reservez vos billets d'avion aux meilleurs prix grace à notre reseau de partenaires.</p>
+                </a>
+            </div>
+            <div class="service">
+                <a href="formulaire.html? service=accompagnement_processus" class="service">
+                <h3>Accompagnement du processus</h3>
+                <p>Nous assurons un suivi personnalisé pour chaque étape de votre démarche du debut à la fin.</p>
+                </a>
+            </div>
+            </div>
+            </section>
+            <div class="slogan">
+                TMT SARL "votre voyage,notre mission !"
+                </div>
+                <footer>
+                    TMT SARL 2023 - tous droits reservées , creer par l'equipe TMT SARL
+                    </footer>
+</body>
+</html>
